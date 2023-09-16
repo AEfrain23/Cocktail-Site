@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cocktails</title>
+  <link rel="stylesheet" href="/styles/styles.css">
+</head>
+
+<body>
+  <div class="entire-container">
+
+    <h1>DIY Cocktails</h1>
+
+    <div class="search-container">
+      <h2>Search Options</h2>
+      <form id="myForm" method="post">
+        <div>
+          <input class="button" id="get" type="submit" value="Press for random cocktail" formaction="/get-cocktail">
+        </div>
+        <div class="alcoholic-option-container">
+          <div>
+            <label for="alcoholicCheckbox">Alcoholic</label>
+            <input type="radio" id="alcoholicCheckbox" name="alcoholicOrNon" value="alcoholic">
+            <label for="nonAlcoholicCheckbox">Non-Alcoholic</label>
+            <input type="radio" id="nonAlcoholicCheckbox" name="alcoholicOrNon" value="nonAlcoholic">
+          </div>
+          <div>
+            <input class="button" type="submit" id="get" value="Press For cocktail" formaction="/random-alcoholic-or-non">
+          </div>
+        </div>
+        <div>
+          <input type="text" id="idInput" name="id">
+          <input class="button" type="submit" id="post" value="Search by ID" formaction="/get-cocktail-by-id">
+        </div>
+      </form>
+    </div>
+
+    <div class="cocktail-container">
+      <% firstCharRemoved=drinkImage.slice(1); %>
+      <% lastCharRemoved=firstCharRemoved.slice(0, firstCharRemoved.length - 1); %>
+      <div class="img-container">
+        <img src="<%-lastCharRemoved%>" alt="">
+      </div>
+
+      <div class="info-container">
+        <div class="flex-lg">
+          <strong>Cocktail Name: </strong> 
+          <p class="drink-name">
+            <%= drinkName %>
+          </p>
+          <strong>ID:</strong>
+          <p><%= drinkId %></p>
+        </div>
+        <div class="flex-lg">
+          <strong>Alcoholic / Non-alchoholic:</strong>
+          <p><%= alcohol %></p>
+        </div>
+        <div class="flex">
+          <strong>Instructions:</strong>
+          <p class="instructions-text">
+            <%= instructions %>
+          </p>
+        </div>
+        <div class="flex">
+          <strong>Ingedients:</strong>
+          <div class="grid-container">
+          <!-- Here we are turning the js object into and array. We are then looping over the array to retrieve the desired data. -->
+            <div>
+              <% const ingredientsArray=Object.values(ingredient) %>
+              <% for (i=(ingredientsArray.length-34);i<(ingredientsArray.length-19);i++) {%>
+              <p>
+              <%= ingredientsArray[i] %>
+              </p>
+              <% } %>
+            </div>
+            <div>
+              <% const AmountsArray=Object.values(ingredient) %>
+              <% for (i=(AmountsArray.length-19);i<(AmountsArray.length-4);i++) {%>
+              <p>
+              <%= AmountsArray[i] %>
+              </p>
+              <% } %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+  </div>
+</body>
+
+</html>
