@@ -169,8 +169,12 @@ p {
         gap: 1.5rem;
     }
 
+    .info-container>.flex-lg {
+        flex-direction: column;
+    }
+
     .instructions-text {
-        text-align: center;
+        text-align: justify;
         padding-top: 0.5rem;
     }
 
