@@ -37,11 +37,21 @@ h1 {
 
 /* ---------------------------------------- SEARCH OPTIONS CONTAINER  ----------------------------------------*/
 
+#myForm {
+    height: max-content;
+}
+
 .search-container {
     margin: 2rem 0;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
+}
+
+.checkbox-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
 }
 
 h2 {
@@ -75,10 +85,14 @@ form {
     background-color: #FFDE7D;
 }
 
+input {
+    margin: 0;
+}
+
 /* ---------------------------------------- COCKTAIL RESPONSE CONTAINER  ----------------------------------------*/
 
 .cocktail-container {
-    padding-top: 2.5rem;
+    padding-top: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;

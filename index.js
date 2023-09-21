@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
    res.render("index.ejs", {
       drinkId: "",
-      drinkName: "Press button to get a cocktail",
+      drinkName: "",
       alcohol: "",
       drinkImage: "",
       instructions: "",
@@ -111,8 +111,22 @@ app.post("/random-alcoholic-or-non", async (req, res) => {
          res.status(404).send(error.message); // Look into error handling.
       };
 
-   } else {
-      res.redirect("/")
+   } else if (req.body.alcoholicOrNon == "allCocktails") {
+      try {
+         const result = await axios.get(`${API_URL}/random.php`);
+         res.render("index.ejs", {
+            drinkId: (result.data.drinks[0].idDrink),
+            drinkName: (result.data.drinks[0].strDrink),
+            drinkImage: JSON.stringify(result.data.drinks[0].strDrinkThumb),
+            alcohol: (result.data.drinks[0].strAlcoholic),
+            instructions: (result.data.drinks[0].strInstructions),
+            ingredient: result.data.drinks[0],
+      
+         });
+      } catch (error) {
+         console.error("Failed to make request:", error.message); // 'error.message' displays the first message sent by the error.
+         res.status(404).send(error.message); // Look into error handling.
+      }
    }
 });
 

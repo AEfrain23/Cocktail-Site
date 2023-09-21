@@ -16,24 +16,32 @@
     <div class="search-container">
       <h2>Search Options</h2>
       <form id="myForm" method="post">
-        <div>
+        <!-- <div>
           <input class="button" id="get" type="submit" value="Press for random cocktail" formaction="/get-cocktail">
-        </div>
+        </div> -->
         <div class="alcoholic-option-container">
-          <div>
-            <label for="alcoholicCheckbox">Alcoholic</label>
-            <input type="radio" id="alcoholicCheckbox" name="alcoholicOrNon" value="alcoholic">
-            <label for="nonAlcoholicCheckbox">Non-Alcoholic</label>
-            <input type="radio" id="nonAlcoholicCheckbox" name="alcoholicOrNon" value="nonAlcoholic">
+          <div class="checkbox-container">
+            <div class="checkbox-option">
+              <label for="alcoholicCheckbox">All</label>
+              <input type="radio" id="allCheckbox" name="alcoholicOrNon" value="allCocktails" checked>
+            </div>
+            <div class="checkbox-option">
+              <label for="alcoholicCheckbox">Alcoholic</label>
+              <input type="radio" id="alcoholicCheckbox" name="alcoholicOrNon" value="alcoholic">
+            </div>
+            <div class="checkbox-option">
+              <label for="nonAlcoholicCheckbox">Non-Alcoholic</label>
+              <input type="radio" id="nonAlcoholicCheckbox" name="alcoholicOrNon" value="nonAlcoholic">
+            </div>
           </div>
           <div>
-            <input class="button" type="submit" id="get" value="Press For cocktail" formaction="/random-alcoholic-or-non">
+            <input class="button" type="submit" id="get" value="Press for random cocktail" formaction="/random-alcoholic-or-non">
           </div>
         </div>
-        <div>
+        <!-- <div>
           <input type="text" id="idInput" name="id">
-          <input class="button" type="submit" id="post" value="Search by ID" formaction="/get-cocktail-by-id">
-        </div>
+          <input class="button" type="submit" id="post" value="Search by ID" formaction="/get-cocktail-by-name">
+        </div> -->
       </form>
     </div>
 
@@ -46,25 +54,31 @@
 
       <div class="info-container">
         <div class="flex-lg">
+          <% if (locals.drinkName) {%>
           <strong>Cocktail Name: </strong> 
+          <% } %>
           <p class="drink-name">
             <%= drinkName %>
           </p>
-          <strong>ID:</strong>
-          <p><%= drinkId %></p>
         </div>
         <div class="flex-lg">
+          <% if (locals.alcohol) {%>
           <strong>Alcoholic / Non-alchoholic:</strong>
+          <% } %>
           <p><%= alcohol %></p>
         </div>
         <div class="flex">
+          <% if (locals.drinkName) {%>
           <strong>Instructions:</strong>
+          <% } %>
           <p class="instructions-text">
             <%= instructions %>
           </p>
         </div>
         <div class="flex">
+          <% if (locals.ingredient) {%>
           <strong>Ingedients:</strong>
+          <% } %>
           <div class="grid-container">
           <!-- Here we are turning the js object into and array. We are then looping over the array to retrieve the desired data. -->
             <div>
