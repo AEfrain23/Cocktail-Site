@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import axios from "axios";
 
 const app = express();
-const port = 3000;
+const port = 3001;
 const API_URL = "https://www.thecocktaildb.com/api/json/v1/1";
 
 app.use(express.static("public"));  // Allows our static files to be located (in the public folder).
@@ -89,7 +89,7 @@ app.post("/random-alcoholic-or-non", async (req, res) => {
    } else if (req.body.alcoholicOrNon == "nonAlcoholic") {
       try {
          const result = await axios.get(API_URL + "/filter.php?a=Non_Alcoholic");
-         const randomNonAlcoholic = result.data.drinks[Math.floor(Math.random() * result.data.drinks.length)]; // Random alcoholic cocktail
+         const randomNonAlcoholic = result.data.drinks[Math.floor(Math.random() * result.data.drinks.length)]; // Random Non-alcoholic cocktail
          const randomNonAlcoholicId = randomNonAlcoholic.idDrink;
          console.log(randomNonAlcoholic);
          console.log(randomNonAlcoholicId);
